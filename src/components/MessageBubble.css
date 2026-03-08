@@ -1,0 +1,174 @@
+/* ========== Message Bubble ========== */
+.msg-bubble {
+  position: relative;
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  margin-bottom: 4px;
+  animation: msgSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  word-wrap: break-word;
+  line-height: 1.45;
+}
+
+.msg-bubble--own {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #00b4d8, #00d4aa);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.msg-bubble--other {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+  border-bottom-left-radius: 6px;
+}
+
+.msg-bubble__sender {
+  font-size: 11px;
+  font-weight: 700;
+  color: #00d4aa;
+  margin-bottom: 2px;
+  text-transform: capitalize;
+}
+
+/* Image */
+.msg-bubble__image-wrap {
+  margin: 4px -6px 6px -6px;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.msg-bubble__image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.msg-bubble__image:hover {
+  transform: scale(1.02);
+}
+
+/* Text */
+.msg-bubble__text {
+  font-size: 14.5px;
+}
+
+/* Meta */
+.msg-bubble__meta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.msg-bubble__time {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.msg-bubble__seen {
+  font-size: 12px;
+  opacity: 0.5;
+  letter-spacing: -2px;
+}
+
+.msg-bubble__seen.seen {
+  color: #90e0ef;
+  opacity: 1;
+}
+
+/* Reactions */
+.msg-bubble__reactions {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.msg-bubble__reaction {
+  font-size: 18px;
+  animation: reactionPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+}
+
+.msg-bubble__react-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msg-bubble--own .msg-bubble__react-btn {
+  left: -36px;
+}
+
+.msg-bubble--other .msg-bubble__react-btn {
+  right: -36px;
+}
+
+.msg-bubble:hover .msg-bubble__react-btn {
+  opacity: 1;
+}
+
+/* Lightbox */
+.msg-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fadeIn 0.2s ease;
+}
+
+.msg-lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  animation: lightboxZoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes msgSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes reactionPop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes lightboxZoom {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
